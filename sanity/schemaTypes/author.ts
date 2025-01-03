@@ -18,24 +18,24 @@ export const author = defineType({
         }),
         defineField({
             name: 'username',
-            type: 'number',
+            type: 'string',
         }),
         defineField({
             name: 'email',
-            type: 'number',
+            type: 'string',
         }),
         defineField({
             name: 'image',
             type: 'url',
         }),
         defineField({
-            name: 'pitch',
-            type: 'markdown',
+            name: 'bio',
+            type: 'text',
         }),
     ],
-    // preview: {
-    //     select: {
-    //         title: 'name',
-    //     }
-    // }
+    preview: {
+        select: {
+            title: 'name',
+        }
+    }
 })

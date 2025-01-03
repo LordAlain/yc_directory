@@ -8,10 +8,10 @@ const SearchForm = ({query}: { query?: string }) => {
     // const query = 'Test';
 
     return (
-        <Form action="/public" scroll={false} className="search-form">
+        <Form action="/" scroll={false} className="search-form">
             <input
                 name="query"
-                defaultValue=""
+                defaultValue={query}
                 className="search-input"
                 placeholder="Search Startups..."
             />

@@ -6,15 +6,16 @@ export const startup = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'title',
+            title: 'Title',
+            type: 'string',
+        }),
+        defineField({
             name: 'slug',
             type: 'slug',
             options: {
                 source: 'title',
             }
-        }),
-        defineField({
-            name: 'title',
-            type: 'string',
         }),
         defineField({
             name: 'author',
@@ -39,10 +40,14 @@ export const startup = defineType({
             type: 'url',
             validation: (Rule) => Rule.required().error("Please enter a valid image"),
         }),
+        defineField({
+            name: 'pitch',
+            type: 'markdown',
+        }),
     ],
     preview: {
         select: {
-            title: 'name',
+            title: 'title',
         }
     }
 })
