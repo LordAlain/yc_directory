@@ -1,8 +1,7 @@
 // /startup/[id]
 
-import React from "react";
+import React, {Suspense} from "react";
 import {STARTUP_BY_ID_QUERY} from "@/sanity/lib/queries";
-// import { Suspense } from "react";
 import {client} from "@/sanity/lib/client";
 // import {
 //     PLAYLIST_BY_SLUG_QUERY,
@@ -14,8 +13,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 import markdownit from "markdown-it";
-// import { Skeleton } from "@/components/ui/skeleton";
-// import View from "@/components/View";
+import {Skeleton} from "@/components/ui/skeleton";
+import View from "@/components/View";
 // import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 
 const md = markdownit();
@@ -44,9 +43,9 @@ const Page = async ({params}: { params: Promise<{ id: string }> }) => {
     //     <h1 className={"text-3xl"}>{post.title}</h1>
     // </>
 
-//
-//     const parsedContent = md.render(post?.pitch || "");
-//
+
+    const parsedContent = md.render(post?.pitch || "");
+
     return (
         <>
             <section className="pink_container !min-h-[230px]">
@@ -70,7 +69,7 @@ const Page = async ({params}: { params: Promise<{ id: string }> }) => {
                             className="flex gap-2 items-center mb-3"
                         >
                             <Image
-                                src={post.author.image}
+                                src={post.author?.image}
                                 alt="avatar"
                                 width={64}
                                 height={64}
@@ -99,7 +98,9 @@ const Page = async ({params}: { params: Promise<{ id: string }> }) => {
                     )}
                 </div>
 
-                {/*    <hr className="divider" />*/}
+                <hr className="divider"/>
+
+                {/* TODO: Editor Selected Startups*/}
 
                 {/*    {editorPosts?.length > 0 && (*/}
                 {/*        <div className="max-w-4xl mx-auto">*/}
@@ -113,9 +114,9 @@ const Page = async ({params}: { params: Promise<{ id: string }> }) => {
                 {/*        </div>*/}
                 {/*    )}*/}
 
-                {/*    <Suspense fallback={<Skeleton className="view_skeleton" />}>*/}
-                {/*        <View id={id} />*/}
-                {/*    </Suspense>*/}
+                <Suspense fallback={<Skeleton className="view_skeleton"/>}>
+                    <View id={id}/>
+                </Suspense>
             </section>
         </>
     );
